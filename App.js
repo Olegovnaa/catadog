@@ -5,17 +5,17 @@
  * @format
  * @flow
  */
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
 
-export default class HelloWorldApp extends Component {
+import React, { Component } from 'react';
+import { AppRegistry, Text, View } from 'react-native';
+import LotsOfBreeds from './components/Breeds';
+
+export default class App extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Hello, world!</Text>
+      <View style={{alignItems: 'center'}}>
+           <LotsOfBreeds />
       </View>
     );
   }
 }
-
-
