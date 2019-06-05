@@ -1,7 +1,12 @@
 import React from 'react';
 import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 export default class LotsOfBreeds extends React.Component {
+
+static navigationOptions = {
+  title: 'Breeds',
+};
 
   constructor(props){
     super(props);
@@ -36,7 +41,7 @@ export default class LotsOfBreeds extends React.Component {
      return(
          <FlatList
            data={this.state.dataSource}
-           renderItem={({item}) => <Text>{item.name}</Text>}
+           renderItem={({item}) => <Text onPress={() => this.props.navigation.navigate('Breed')}>{item.name}</Text>}
            keyExtractor={({id}, index) => id.toString()}
          />
      );

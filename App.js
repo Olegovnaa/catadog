@@ -6,19 +6,18 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { AppRegistry, Text, View } from 'react-native';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 import LotsOfBreeds from './components/Breeds';
+import Breed from './components/Breed';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={{alignItems: 'center'}}>
-           <LotsOfBreeds />
-      </View>
-    );
-  }
-}
+const MainNavigator = createStackNavigator({
+  Breeds: {screen: LotsOfBreeds},
+  Breed: {screen: Breed},
 
+});
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
 
 
