@@ -41,7 +41,7 @@ static navigationOptions = {
      return(
          <FlatList
            data={this.state.dataSource}
-           renderItem={({item}) => <Text onPress={() => this.props.navigation.navigate('Breed')}>{item.name}</Text>}
+           renderItem={({item}) => <Text onPress={() => this.props.navigation.navigate('Breed', {id: item.id, name: item.name})}>{item.name}</Text>}
            keyExtractor={({id}, index) => id.toString()}
          />
      );
