@@ -41,7 +41,7 @@ static navigationOptions = {
      return(
          <FlatList
            data={this.state.dataSource}
-           renderItem={({item}) => <Text onPress={() => this.props.navigation.navigate('Breed', {id: item.id, name: item.name})}>{item.name}</Text>}
+           renderItem={({item}) => <ListItem topDivider={true} bottomDivider={true} onPress={() => this.props.navigation.navigate('Breed', {id: item.id, name: item.name})} title={item.name} subtitle={item.breed_group} chevron={true} titleStyle={{ fontWeight: 'bold' }} leftAvatar={{ source: require('../images/logo.jpg') }}/>}
            keyExtractor={({id}, index) => id.toString()}
          />
      );

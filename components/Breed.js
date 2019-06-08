@@ -48,7 +48,7 @@ export default class Breed extends Component {
     return (
 
         <View>
-          <Image source={pic} style={{width: 386, height: 220}}/>
+          <Image source={pic} style={{height: 300}}/>
           {breed.bred_for && <Text>Breed for: {breed.bred_for}</Text>}
           {breed.breed_group && <Text>Breed group: {breed.breed_group}</Text>}
           {breed.life_span && <Text>Life span: {breed.life_span}</Text>}
