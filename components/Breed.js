@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, ActivityIndicator, Text } from 'react-native';
+import { FlatList, View, Image, ActivityIndicator, Text } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 export default class Breed extends Component {
  static navigationOptions = ({ navigation }) => {
@@ -41,7 +42,19 @@ export default class Breed extends Component {
         )
       }
       const breedData = this.state.dataSource['0'];
+
       const breed = breedData.breeds['0'];
+
+      const keys = ['bred_for', 'breed_group', 'life_span', 'temperament', 'origin'];
+           let fields = []
+
+           keys.forEach(function(key) {
+             if (breed[key]) {
+               let title = key.charAt(0).toUpperCase() + key.slice(1);
+               fields.push({key: title.replace('_', ' '), value: breed[key]});
+             }
+           })
+
     let pic = {
       uri: breedData.url
     };
@@ -49,11 +62,11 @@ export default class Breed extends Component {
 
         <View>
           <Image source={pic} style={{height: 300}}/>
-          {breed.bred_for && <Text>Breed for: {breed.bred_for}</Text>}
-          {breed.breed_group && <Text>Breed group: {breed.breed_group}</Text>}
-          {breed.life_span && <Text>Life span: {breed.life_span}</Text>}
-          {breed.temperament && <Text>Temperament: {breed.temperament}</Text>}
-          {breed.origin && <Text>Origin: {breed.origin}</Text>}
+          <FlatList
+            data={fields}
+            renderItem={({item}) => <ListItem topDivider={true} bottomDivider={true} subtitle={item.value} title={item.key} titleStyle={{ fontWeight: 'bold' }} />}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
 
 
