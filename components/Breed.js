@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, View, Image, ActivityIndicator, Text } from 'react-native';
 import { ListItem } from 'react-native-elements'
+import { SliderBox } from 'react-native-image-slider-box';
 
 export default class Breed extends Component {
  static navigationOptions = ({ navigation }) => {
@@ -16,7 +17,7 @@ export default class Breed extends Component {
 
   componentDidMount(){
    const id = this.props.navigation.getParam('id');
-    return fetch('https://api.thedogapi.com/v1/images/search?breed_id=' + id)
+    return fetch('https://api.thedogapi.com/v1/images/search?limit=5&breed_id=' + id)
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -55,13 +56,14 @@ export default class Breed extends Component {
              }
            })
 
-    let pic = {
-      uri: breedData.url
-    };
+    let images = [];
+    this.state.dataSource.forEach(function(image) {
+       images.push(image.url)
+    })
     return (
 
         <View>
-          <Image source={pic} style={{height: 300}}/>
+          <SliderBox images={images} sliderBoxHeight={300} />
           <FlatList
             data={fields}
             renderItem={({item}) => <ListItem topDivider={true} bottomDivider={true} subtitle={item.value} title={item.key} titleStyle={{ fontWeight: 'bold' }} />}
